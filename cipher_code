@@ -1,0 +1,35 @@
+encryption_option = input("Would you like to Encode or Decode? ") 
+
+should_encode = "encode" in encryption_option.lower()
+should_decode = "decode" in encryption_option.lower()
+
+cipher_number = int(input("What is your cipher number?"))
+message = input("What is your message?")
+
+if should_encode:
+    msg = ""
+    for ch in message:                                                                                                
+        if ch.isalpha():    
+            if ord(ch) >= 65 and ord(ch) <= 90:                                                                                                 
+                msg += chr((ord(ch)+ cipher_number-65) % 26 + 65) 
+            else:
+                msg += chr((ord(ch)+ cipher_number-97) % 26 + 97)
+        else:
+            msg += ch                                                                               
+    
+    print(msg)     
+
+elif should_decode:
+    msg = ""
+    for ch in message:
+        if ch.isalpha():     
+            if ord(ch) >= 65 and ord(ch) <= 90:
+                msg += chr((ord(ch)- cipher_number-65) %26 +65)   
+            else:
+                msg += chr((ord(ch)- cipher_number-97) % 26 + 97)
+        else:                                                                                                           
+            msg += ch                                                                               
+    print(msg)                                      
+else:
+    print ("Only encode and decode options are available")                                                                                          
+
